@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Logger</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>LoggerT
+    </h1>
+    
+    <!-- Блок для текущей температуры -->
+    <p>Текущая температура: <span id="current-temperature">Загрузка...</span> °C</p>
+    
+    <!-- Форма для получения статистики -->
+    <form id="stats-form">
+        <label for="start">Запустить таймер(Unix timestamp): </label>
+        <input type="text" id="start" name="start" required>
+        <br><br>
+        <label for="end">Выключить таймер (Unix timestamp): </label>
+        <input type="text" id="end" name="end" required>
+        <br><br>
+        <button type="submit">Создать график</button>
+    </form>
+    
+    <p id="stats-result"></p>
+    <canvas id="temperatureChart" width="400" height="200"></canvas>
+
+    <script>
+        let chartInstance = null;
+
+        // Функция для обновления текущей температуры
+        function updateCurrentTemperature() {
+            fetch('http://localhost:8080/current-temperature')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.current_temperature !== undefined) {
+                        document.getElementById('current-temperature').innerText = data.current_temperature.toFixed(2);
+                    } else {
+                        document.getElementById('current-temperature').innerText = "N/A";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching current temperature:", error);
+                    document.getElementById('current-temperature').innerText = "Error";
+                });
+        }
+
+        // Обновляем текущую температуру каждые 5 секунд
+        setInterval(updateCurrentTemperature, 5000);
+        updateCurrentTemperature();
+
+        // Обработчик отправки формы для статистики
+        document.getElementById('stats-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let start = document.getElementById('start').value;
+            let end = document.getElementById('end').value;
+
+            fetch('http://localhost:8080/statistics?start=' + start + '&end=' + end)
+                .then(response => response.json())
+                .then(data => {
+                    let result = document.getElementById('stats-result');
+                    if (data.temperatures && data.temperatures.length > 0) {
+                        result.innerHTML = "Данные отображены!";
+                        
+                        // Адаптивный масштаб времени
+                        const labels = data.temperatures.map(item => {
+                            const date = new Date(item.timestamp * 1000);
+                            if (data.temperatures.length > 100) {
+                                return '${date.getHours()}:${date.getMinutes()}';
+                            } else {
+                                return '${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}';
+                            }
+                        });
+
+                        const temperatures = data.temperatures.map(item => item.temperature);
+
+                        const ctx = document.getElementById('temperatureChart').getContext('2d');
+                        
+                        if (chartInstance) {
+                            chartInstance.destroy();
+                        }
+
+                        chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Температура за период (°C)',
+            data: temperatures,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                type: 'category',
+                ticks: { display: false }, // Отключить метки на оси X
+                title: { display: true, text: 'Время' } // Добавить заголовок оси X
+            },
+            y: {
+                beginAtZero: false,
+                title: { display: true, text: 'Температура (°C)' }
+            }
+        }
+    }
+});
+                    } else {
+                        result.innerHTML = "No data available for the specified period";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    document.getElementById('stats-result').innerText = "Failed to fetch data";
+                });
+        });
+    </script>
+</body>
+</html>

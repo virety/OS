@@ -1,0 +1,15 @@
+# ninja log v5
+1	152	1734161318069117096	TemperatureApp_autogen/timestamp	695b9abdeddc8300
+1	152	1734161318069117096	TemperatureApp_autogen/mocs_compilation.cpp	695b9abdeddc8300
+1	152	1734161318069117096	/home/vadim/TemperatureApp/build/Desktop-Debug/TemperatureApp_autogen/timestamp	695b9abdeddc8300
+1	152	1734161318069117096	/home/vadim/TemperatureApp/build/Desktop-Debug/TemperatureApp_autogen/mocs_compilation.cpp	695b9abdeddc8300
+1	175	1734161428947002738	TemperatureApp_autogen/timestamp	695b9abdeddc8300
+1	175	1734161428947002738	TemperatureApp_autogen/mocs_compilation.cpp	695b9abdeddc8300
+1	175	1734161428947002738	/home/vadim/TemperatureApp/build/Desktop-Debug/TemperatureApp_autogen/timestamp	695b9abdeddc8300
+1	175	1734161428947002738	/home/vadim/TemperatureApp/build/Desktop-Debug/TemperatureApp_autogen/mocs_compilation.cpp	695b9abdeddc8300
+4	195	1734167020890321412	TemperatureApp_autogen/timestamp	695b9abdeddc8300
+4	195	1734167020890321412	TemperatureApp_autogen/mocs_compilation.cpp	695b9abdeddc8300
+4	195	1734167020890321412	/home/vadim/TemperatureApp/build/Desktop-Debug/TemperatureApp_autogen/timestamp	695b9abdeddc8300
+4	195	1734167020890321412	/home/vadim/TemperatureApp/build/Desktop-Debug/TemperatureApp_autogen/mocs_compilation.cpp	695b9abdeddc8300
+0	19	0	CMakeFiles/clean.additional	ef993b15a92b8f11
+19	23	0	clean	a31eedcededa8236

@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0114cf3a556993fbbb3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "TemperatureApp",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "TemperatureApp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TemperatureApp-Debug-c7c0da9b678f13e932ca.json",
+					"name" : "TemperatureApp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TemperatureApp_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TemperatureApp_autogen-Debug-18270ed470d311cc1486.json",
+					"name" : "TemperatureApp_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TemperatureApp_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TemperatureApp_autogen_timestamp_deps-Debug-28f49c3b94e395918dbe.json",
+					"name" : "TemperatureApp_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/vadim/TemperatureApp/build/Desktop-Debug",
+		"source" : "/home/vadim/TemperatureApp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
